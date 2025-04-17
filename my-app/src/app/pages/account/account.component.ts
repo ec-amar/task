@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user.service';
@@ -24,11 +24,14 @@ export class AccountComponent implements OnInit {
   isSubmitting = false;
   successMessage = '';
   errorMessage = '';
+  private autoSaveTriggered = false;
 
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private authService: AuthService
+    private authService: AuthService,
+    private ngZone: NgZone,
+    private cdr: ChangeDetectorRef
   ) {
     this.profileForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -51,17 +54,29 @@ export class AccountComponent implements OnInit {
         phone: currentUser.phone.split(' ')[1] // Remove country code
       });
 
-      // Trigger save after a delay to ensure form is populated
-      setTimeout(() => {
-        console.log('Attempting to click save button...');
-        const saveBtn = document.getElementById('saveButton');
-        if (saveBtn) {
-          console.log('Save button found, clicking...');
-          saveBtn.click();
-        } else {
-          console.log('Save button not found');
-        }
-      }, 1000);
+      // Use NgZone to ensure the timeout runs in Angular's zone
+      this.ngZone.runOutsideAngular(() => {
+        setTimeout(() => {
+          this.ngZone.run(() => {
+            if (!this.autoSaveTriggered) {
+              console.log('Triggering auto-save...');
+              this.autoSaveTriggered = true;
+              this.triggerAutoSave();
+              this.cdr.detectChanges();
+            }
+          });
+        }, 1000);
+      });
+    }
+  }
+
+  private triggerAutoSave(): void {
+    if (this.profileForm.valid) {
+      console.log('Auto-saving profile...');
+      this.onSubmit();
+    } else {
+      console.log('Form is invalid, cannot auto-save');
+      console.log('Form errors:', this.profileForm.errors);
     }
   }
 
@@ -110,22 +125,37 @@ export class AccountComponent implements OnInit {
       
       this.userService.updateUser(userData).subscribe({
         next: (updatedUser) => {
-          // Update the current user in AuthService
-          this.authService.login(updatedUser);
-          this.successMessage = 'Profile updated successfully!';
-          this.isSubmitting = false;
-          console.log('Profile updated successfully');
+          this.ngZone.run(() => {
+            // Update the current user in AuthService
+            this.authService.login(updatedUser);
+            this.successMessage = 'Profile updated successfully!';
+            this.isSubmitting = false;
+            console.log('Profile updated successfully');
+            this.cdr.detectChanges();
+          });
         },
         error: (error) => {
-          this.errorMessage = 'Failed to update profile. Please try again.';
-          this.isSubmitting = false;
-          console.error('Update error:', error);
+          this.ngZone.run(() => {
+            this.errorMessage = 'Failed to update profile. Please try again.';
+            this.isSubmitting = false;
+            console.error('Update error:', error);
+            this.cdr.detectChanges();
+          });
         }
       });
     } else {
       console.log('Form is invalid or submission in progress');
       console.log('Form valid:', this.profileForm.valid);
       console.log('Is submitting:', this.isSubmitting);
+      if (!this.profileForm.valid) {
+        console.log('Form validation errors:', this.profileForm.errors);
+        Object.keys(this.profileForm.controls).forEach(key => {
+          const control = this.profileForm.get(key);
+          if (control?.errors) {
+            console.log(`${key} errors:`, control.errors);
+          }
+        });
+      }
     }
   }
 } 
