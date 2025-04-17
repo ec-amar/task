@@ -1,0 +1,11 @@
+<div class="sidebar">
+  <nav class="nav flex-column">
+    <a *ngFor="let item of menuItems" 
+       class="nav-link" 
+       [routerLink]="item.route"
+       routerLinkActive="active">
+      <i [class]="item.icon"></i>
+      <span>{{ item.label }}</span>
+    </a>
+  </nav>
+</div> 

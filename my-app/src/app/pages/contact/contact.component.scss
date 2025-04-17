@@ -1,0 +1,262 @@
+.account-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+}
+
+.header {
+  background-color: #17a2b8;
+  padding: 2rem 0;
+  color: white;
+  
+  h1 {
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+  
+  .subtitle {
+    margin: 0.5rem 0 0;
+    opacity: 0.9;
+    font-size: 1.1rem;
+  }
+  
+  .btn-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.content-wrapper {
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  margin: 2rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.contact-info-card, .contact-form-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  height: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #212529;
+    font-weight: 600;
+  }
+}
+
+.contact-info-card {
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    
+    i {
+      font-size: 1.25rem;
+      color: #17a2b8;
+      margin-right: 1rem;
+      margin-top: 0.25rem;
+    }
+    
+    h4 {
+      font-size: 1rem;
+      margin: 0 0 0.5rem;
+      color: #212529;
+      font-weight: 600;
+    }
+    
+    p {
+      margin: 0;
+      color: #6c757d;
+      line-height: 1.5;
+    }
+  }
+  
+  .social-links {
+    margin-top: 2rem;
+    
+    h4 {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: #212529;
+      font-weight: 600;
+    }
+    
+    .social-icons {
+      display: flex;
+      gap: 1rem;
+      
+      .social-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: #f8f9fa;
+        border-radius: 50%;
+        color: #17a2b8;
+        font-size: 1.25rem;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          background: #17a2b8;
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+.contact-form-card {
+  .form-group {
+    margin-bottom: 1.5rem;
+    
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #495057;
+      font-weight: 500;
+    }
+    
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+  }
+}
+
+.form-control {
+  padding: 0.75rem 1rem;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  
+  &:focus {
+    border-color: #17a2b8;
+    box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.25);
+  }
+}
+
+.text-danger {
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.btn-primary {
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
+  }
+  
+  &:disabled {
+    background-color: #a0aec0;
+    border-color: #a0aec0;
+    cursor: not-allowed;
+  }
+}
+
+.footer {
+  margin-top: auto;
+  background-color: #17a2b8;
+  color: white;
+  padding: 3rem 0;
+  
+  h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    
+    a {
+      color: white;
+      text-decoration: none;
+      opacity: 0.9;
+      
+      &:hover {
+        opacity: 1;
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  .social-link {
+    color: white;
+    font-size: 1.5rem;
+    opacity: 0.9;
+    
+    &:hover {
+      opacity: 1;
+    }
+  }
+  
+  .copyright {
+    opacity: 0.9;
+    margin: 0;
+  }
+  
+  .presented-by {
+    p {
+      margin: 0 0 0.5rem;
+      opacity: 0.9;
+    }
+    
+    img {
+      height: 40px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 1.5rem 0;
+    
+    h1 {
+      font-size: 2rem;
+    }
+  }
+  
+  .content-wrapper {
+    padding: 1.5rem;
+    margin: 1rem 0;
+  }
+  
+  .contact-info-card, .contact-form-card {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .footer {
+    padding: 2rem 0;
+    
+    .links-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+} 

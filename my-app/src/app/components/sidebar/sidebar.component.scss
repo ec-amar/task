@@ -1,0 +1,32 @@
+.sidebar {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  padding: 2rem 0;
+  border-right: 1px solid #dee2e6;
+
+  .nav-link {
+    color: #495057;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+
+    &:hover {
+      background-color: #e9ecef;
+      color: #212529;
+    }
+
+    &.active {
+      background-color: #17a2b8;
+      color: white;
+    }
+
+    i {
+      width: 20px;
+      text-align: center;
+    }
+  }
+} 

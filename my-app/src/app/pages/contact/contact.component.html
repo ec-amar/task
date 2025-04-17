@@ -1,0 +1,165 @@
+<div class="account-container">
+  <!-- Header -->
+  <header class="header">
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <div class="col">
+          <h1>CONTACT US</h1>
+          <p class="subtitle">Get in touch with our team for any inquiries</p>
+        </div>
+        <div class="col-auto">
+          <button class="btn btn-link">العربية</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-3">
+        <app-sidebar></app-sidebar>
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-md-9">
+        <div class="content-wrapper">
+          <div class="row">
+            <!-- Contact Information -->
+            <div class="col-md-4">
+              <div class="contact-info-card">
+                <h3>Contact Information</h3>
+                <div class="info-item">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <div>
+                    <h4>Address</h4>
+                    <p>{{ contactInfo.address }}</p>
+                  </div>
+                </div>
+                <div class="info-item">
+                  <i class="fas fa-phone-alt"></i>
+                  <div>
+                    <h4>Phone</h4>
+                    <p>{{ contactInfo.phone }}</p>
+                  </div>
+                </div>
+                <div class="info-item">
+                  <i class="fas fa-envelope"></i>
+                  <div>
+                    <h4>Email</h4>
+                    <p>{{ contactInfo.email }}</p>
+                  </div>
+                </div>
+                <div class="info-item">
+                  <i class="fas fa-clock"></i>
+                  <div>
+                    <h4>Working Hours</h4>
+                    <p>{{ contactInfo.workingHours }}</p>
+                  </div>
+                </div>
+                <div class="social-links">
+                  <h4>Follow Us</h4>
+                  <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="col-md-8">
+              <div class="contact-form-card">
+                <h3>Send Us a Message</h3>
+                <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" class="form-control" formControlName="name" placeholder="Enter your name">
+                        <div class="text-danger" *ngIf="contactForm.get('name')?.touched && contactForm.get('name')?.invalid">
+                          Name is required
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Your Email</label>
+                        <input type="email" class="form-control" formControlName="email" placeholder="Enter your email">
+                        <div class="text-danger" *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.invalid">
+                          Please enter a valid email
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label>Subject</label>
+                    <input type="text" class="form-control" formControlName="subject" placeholder="Enter subject">
+                    <div class="text-danger" *ngIf="contactForm.get('subject')?.touched && contactForm.get('subject')?.invalid">
+                      Subject is required
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label>Message</label>
+                    <textarea class="form-control" formControlName="message" rows="5" placeholder="Enter your message"></textarea>
+                    <div class="text-danger" *ngIf="contactForm.get('message')?.touched && contactForm.get('message')?.invalid">
+                      Message must be at least 10 characters
+                    </div>
+                  </div>
+                  
+                  <button type="submit" class="btn btn-primary" [disabled]="!contactForm.valid">Send Message</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="quick-links">
+            <h4>Quick links</h4>
+            <div class="links-grid">
+              <a href="#">Press</a>
+              <a href="#">FAQS</a>
+              <a href="#">Contact us</a>
+              <a href="#">About us</a>
+              <a href="#">Join the team</a>
+              <a href="#">Terms & conditions</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 text-end">
+          <div class="social-section">
+            <h4>FOLLOW US</h4>
+            <a href="#" class="social-link">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <p class="copyright">
+            Copyright © 2024 K-Land.<br>
+            All Rights Reserved.
+          </p>
+        </div>
+        <div class="col-md-6 text-end">
+          <div class="presented-by">
+            <p>PRESENTED BY</p>
+            <img src="assets/images/kland-logo.png" alt="K-Land Logo">
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div> 

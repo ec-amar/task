@@ -1,0 +1,149 @@
+<div class="account-container">
+  <!-- Header -->
+  <header class="header">
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <div class="col">
+          <h1>DELETE ACCOUNT</h1>
+          <p class="subtitle">This action cannot be undone</p>
+        </div>
+        <div class="col-auto">
+          <button class="btn btn-link">العربية</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-3">
+        <app-sidebar></app-sidebar>
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-md-9">
+        <div class="content-wrapper">
+          <div class="delete-account-card">
+            <div class="warning-section">
+              <div class="warning-icon-container">
+                <i class="fas fa-exclamation-triangle warning-icon"></i>
+              </div>
+              <h2>Warning: Account Deletion</h2>
+              <p class="warning-text">
+                You are about to permanently delete your K-Land account. This action will:
+              </p>
+              <ul class="warning-list">
+                <li><i class="fas fa-times-circle"></i> Permanently remove all your personal information</li>
+                <li><i class="fas fa-times-circle"></i> Delete all your saved preferences and settings</li>
+                <li><i class="fas fa-times-circle"></i> Remove access to all your saved content</li>
+                <li><i class="fas fa-times-circle"></i> Cancel any active subscriptions or memberships</li>
+              </ul>
+              <div class="warning-alert">
+                <i class="fas fa-exclamation-circle"></i>
+                <p>This action cannot be undone. Please be certain.</p>
+              </div>
+            </div>
+
+            <div class="confirmation-section" *ngIf="!showConfirmation">
+              <form [formGroup]="deleteForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <label for="password">Enter your password to confirm</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                    <input 
+                      type="password" 
+                      id="password"
+                      class="form-control" 
+                      formControlName="password"
+                      placeholder="Enter your password">
+                  </div>
+                  <div class="text-danger" *ngIf="deleteForm.get('password')?.touched && deleteForm.get('password')?.invalid">
+                    <i class="fas fa-exclamation-circle"></i> Password is required
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="confirmation">Type DELETE to confirm</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-keyboard"></i></span>
+                    <input 
+                      type="text" 
+                      id="confirmation"
+                      class="form-control" 
+                      formControlName="confirmation"
+                      placeholder="Type DELETE">
+                  </div>
+                  <div class="text-danger" *ngIf="deleteForm.get('confirmation')?.touched && deleteForm.get('confirmation')?.invalid">
+                    <i class="fas fa-exclamation-circle"></i> Please type DELETE to confirm
+                  </div>
+                </div>
+
+                <div class="button-group">
+                  <button type="submit" class="btn btn-danger" [disabled]="!deleteForm.valid">
+                    <i class="fas fa-trash-alt"></i> Proceed to Delete Account
+                  </button>
+                  <a routerLink="/account" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Cancel
+                  </a>
+                </div>
+              </form>
+            </div>
+
+            <div class="final-confirmation" *ngIf="showConfirmation">
+              <div class="final-warning-icon">
+                <i class="fas fa-exclamation-circle"></i>
+              </div>
+              <h3>Final Confirmation</h3>
+              <p>Are you absolutely sure you want to delete your account? This action cannot be undone.</p>
+              <div class="button-group">
+                <button (click)="confirmDelete()" class="btn btn-danger">
+                  <i class="fas fa-trash-alt"></i> Yes, Delete My Account
+                </button>
+                <button (click)="cancelDelete()" class="btn btn-secondary">
+                  <i class="fas fa-times"></i> No, Keep My Account
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container-fluid">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="assets/images/kland-logo.png" alt="K-Land Logo">
+        </div>
+        
+        <div class="footer-links">
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">FAQS</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">Terms & Conditions</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-section">
+            <h4>Connect With Us</h4>
+            <div class="social-icons">
+              <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <p class="copyright">Copyright © 2024 K-Land. All Rights Reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div> 

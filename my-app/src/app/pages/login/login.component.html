@@ -1,0 +1,50 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="logo">
+      <img src="assets/images/kland-logo.png" alt="K-Land Logo">
+    </div>
+    
+    <h2 class="text-center">ENTER YOUR EMAIL TO CONTINUE</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <div class="form-group">
+        <input 
+          type="email" 
+          class="form-control" 
+          placeholder="Email" 
+          formControlName="email">
+      </div>
+
+      <div class="form-group position-relative">
+        <input 
+          [type]="showPassword ? 'text' : 'password'" 
+          class="form-control" 
+          placeholder="Password" 
+          formControlName="password">
+        <button 
+          type="button" 
+          class="btn btn-link password-toggle" 
+          (click)="togglePasswordVisibility()">
+          <i class="fas" [class.fa-eye]="!showPassword" [class.fa-eye-slash]="showPassword"></i>
+        </button>
+      </div>
+
+      <div class="text-end mb-3">
+        <a [routerLink]="['/forgot-password']" class="forgot-password">Forgot password?</a>
+      </div>
+
+      <div class="alert alert-danger" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100" [disabled]="isSubmitting">
+        <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-2"></span>
+        {{ isSubmitting ? 'Logging in...' : 'Login' }}
+      </button>
+
+      <div class="text-center mt-3">
+        Don't have an account? <a [routerLink]="['/register']" class="create-account">Create Account</a>
+      </div>
+    </form>
+  </div>
+</div> 

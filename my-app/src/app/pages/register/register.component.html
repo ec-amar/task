@@ -1,0 +1,96 @@
+<section class="bg-image">
+<div class="container ">
+  <div class="row justify-content-center align-items-center min-vh-100">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-body p-5">
+          <div class="text-center mb-4">
+            <h2>Create Account</h2>
+            <p class="text-muted">Join K-Land today</p>
+          </div>
+          
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-control" formControlName="firstName">
+                <div class="text-danger" *ngIf="registerForm.get('firstName')?.touched && registerForm.get('firstName')?.invalid">
+                  First name is required
+                </div>
+              </div>
+              
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-control" formControlName="lastName">
+                <div class="text-danger" *ngIf="registerForm.get('lastName')?.touched && registerForm.get('lastName')?.invalid">
+                  Last name is required
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" formControlName="email">
+              <div class="text-danger" *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
+                Please enter a valid email
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Phone Number</label>
+              <div class="input-group">
+                <select class="form-select" style="max-width: 120px;" [(ngModel)]="selectedCountryCode" name="countryCode">
+                  <option value="965">+965 (KW)</option>
+                </select>
+                <input type="tel" class="form-control" formControlName="phone">
+              </div>
+              <div class="text-danger" *ngIf="registerForm.get('phone')?.touched && registerForm.get('phone')?.invalid">
+                Phone number is required
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+              <div class="input-group">
+                <input [type]="showPassword ? 'text' : 'password'" class="form-control" formControlName="password">
+                <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility('password')">
+                  <i class="fas" [class.fa-eye]="!showPassword" [class.fa-eye-slash]="showPassword"></i>
+                </button>
+              </div>
+              <div class="text-danger" *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
+                Password must be at least 6 characters
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label">Confirm Password</label>
+              <div class="input-group">
+                <input [type]="showConfirmPassword ? 'text' : 'password'" class="form-control" formControlName="confirmPassword">
+                <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility('confirm')">
+                  <i class="fas" [class.fa-eye]="!showConfirmPassword" [class.fa-eye-slash]="showConfirmPassword"></i>
+                </button>
+              </div>
+              <div class="text-danger" *ngIf="registerForm.hasError('mismatch')">
+                Passwords do not match
+              </div>
+            </div>
+
+            <div class="alert alert-danger" *ngIf="errorMessage">
+              {{ errorMessage }}
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100" [disabled]="registerForm.invalid || isSubmitting">
+              <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-2"></span>
+              {{ isSubmitting ? 'Creating Account...' : 'Create Account' }}
+            </button>
+
+            <div class="text-center mt-3">
+              <p class="mb-0">Already have an account? <a routerLink="/login">Login here</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+</section>

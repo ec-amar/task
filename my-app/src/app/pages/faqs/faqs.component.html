@@ -1,0 +1,92 @@
+<div class="account-container">
+  <!-- Header -->
+  <header class="header">
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <div class="col">
+          <h1>FREQUENTLY ASKED QUESTIONS</h1>
+          <p class="subtitle">Find answers to common questions about K-Land</p>
+        </div>
+        <div class="col-auto">
+          <button class="btn btn-link">العربية</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-3">
+        <app-sidebar></app-sidebar>
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-md-9">
+        <div class="content-wrapper">
+          <div class="faqs-section">
+            <div class="accordion">
+              <div class="accordion-item" *ngFor="let faq of faqs; let i = index">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" [class.collapsed]="!faq.isOpen" type="button" 
+                          (click)="toggleFaq(i)">
+                    {{ faq.question }}
+                    
+                  </button>
+                </h2>
+                <div class="accordion-collapse" [class.show]="faq.isOpen">
+                  <div class="accordion-body">
+                    {{ faq.answer }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="quick-links">
+            <h4>Quick links</h4>
+            <div class="links-grid">
+              <a href="#">Press</a>
+              <a href="#">FAQS</a>
+              <a href="#">Contact us</a>
+              <a href="#">About us</a>
+              <a href="#">Join the team</a>
+              <a href="#">Terms & conditions</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 text-end">
+          <div class="social-section">
+            <h4>FOLLOW US</h4>
+            <a href="#" class="social-link">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <p class="copyright">
+            Copyright © 2024 K-Land.<br>
+            All Rights Reserved.
+          </p>
+        </div>
+        <div class="col-md-6 text-end">
+          <div class="presented-by">
+            <p>PRESENTED BY</p>
+            <img src="assets/images/kland-logo.png" alt="K-Land Logo">
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div> 
