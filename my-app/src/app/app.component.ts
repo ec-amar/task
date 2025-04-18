@@ -16,7 +16,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     SidebarComponent
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   title = 'my-app';
