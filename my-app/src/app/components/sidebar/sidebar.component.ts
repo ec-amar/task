@@ -11,14 +11,21 @@ import { AuthService } from '../../services/auth.service';
   imports: [CommonModule, RouterModule]
 })
 export class SidebarComponent {
+  // menuItems = [
+  //   { icon: 'fas fa-user-edit', label: 'Edit Profile', route: '/account' },
+  //   { icon: 'fas fa-question-circle', label: 'FAQs', route: '/faqs' },
+  //   { icon: 'fas fa-envelope', label: 'Contact Us', route: '/contact' },
+  //   { icon: 'fas fa-trash-alt', label: 'Delete Account', route: '/delete-account' },
+  //   { icon: 'fas fa-sign-out-alt', label: 'Logout', route: '/logout' }
+  // ];
+
   menuItems = [
     { icon: 'fas fa-user-edit', label: 'Edit Profile', route: '/account' },
-    { icon: 'fas fa-question-circle', label: 'FAQs', route: '/faqs' },
-    { icon: 'fas fa-envelope', label: 'Contact Us', route: '/contact' },
-    { icon: 'fas fa-trash-alt', label: 'Delete Account', route: '/delete-account' },
+    { icon: 'fas fa-question-circle', label: 'FAQs', route: '#' },
+    { icon: 'fas fa-envelope', label: 'Contact Us', route: '#' },
+    { icon: 'fas fa-trash-alt', label: 'Delete Account', route: '#' },
     { icon: 'fas fa-sign-out-alt', label: 'Logout', route: '/logout' }
   ];
-
   constructor(
     private router: Router,
     private authService: AuthService
